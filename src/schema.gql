@@ -1,0 +1,106 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  password: String!
+  name: String!
+  lastname: String!
+  profile_pic: String
+  is_active: Boolean
+}
+
+type Comment {
+  id: Int!
+  content: String!
+  user_id: Int!
+  post_id: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  is_active: Boolean
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Post {
+  id: Int!
+  content: String!
+  user_id: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  is_active: Boolean
+  user: User!
+  comment: [Comment!]
+}
+
+type Query {
+  findAllUsers: [User!]!
+  findOneUser(id: Int!): User!
+  findAllPosts: [Post!]!
+  findOnePost(id: Int!): Post!
+  findAllComments: [Comment!]!
+  findOneComment(id: Int!): Comment!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post!
+  createComment(createCommentInput: CreateCommentInput!): Comment!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
+  removeComment(id: Int!): Comment!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  password: String!
+  name: String!
+  lastname: String!
+  profile_pic: String
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  password: String
+  name: String
+  lastname: String
+  profile_pic: String
+  id: Int!
+  is_active: Boolean
+}
+
+input CreatePostInput {
+  content: String!
+  user_id: Float!
+}
+
+input UpdatePostInput {
+  content: String
+  user_id: Float
+  id: Int!
+}
+
+input CreateCommentInput {
+  content: String!
+  user_id: Float!
+  post_id: Float!
+}
+
+input UpdateCommentInput {
+  content: String
+  user_id: Float
+  post_id: Float
+  id: Int!
+}
