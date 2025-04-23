@@ -20,9 +20,9 @@ export class User {
   @Field()
   lastname?: string;
 
-  @Field({ nullable: true })
-  profile_pic?: string;
+  @Field( () => String, { nullable: true })
+  profile_pic: string | null;  
 
-  @Field({nullable: true})
-  is_active?: boolean;
+  @Field( () => Boolean, { nullable: true })
+  is_active: boolean | null;
 }

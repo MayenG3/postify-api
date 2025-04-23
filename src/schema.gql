@@ -40,6 +40,11 @@ type Post {
   comment: [Comment!]
 }
 
+type AuthResponse {
+  access_token: String!
+  user: User!
+}
+
 type Query {
   findAllUsers: [User!]!
   findOneUser(id: Int!): User!
@@ -59,6 +64,7 @@ type Mutation {
   createComment(createCommentInput: CreateCommentInput!): Comment!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   removeComment(id: Int!): Comment!
+  login(loginInput: LoginInput!): AuthResponse!
 }
 
 input CreateUserInput {
@@ -103,4 +109,9 @@ input UpdateCommentInput {
   user_id: Float
   post_id: Float
   id: Int!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
