@@ -14,11 +14,11 @@ export class PostsService {
   findAll() {
     return this.prisma.post.findMany({
       where: { is_active: true },
-      orderBy: { created_at: 'desc' }, // Posts más recientes primero
+      orderBy: { created_at: 'desc' },
       include: {
         user: true,
         comment: {
-          orderBy: { created_at: 'desc' }, // Comentarios más recientes primero
+          orderBy: { created_at: 'desc' },
           include: {
             user: true,
           },
