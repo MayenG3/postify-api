@@ -14,16 +14,19 @@ export class PostsService {
   findAll() {
     return this.prisma.post.findMany({
       where: { is_active: true },
-      include: { 
-        user: true, 
-        comment:{
+      orderBy: { created_at: 'desc' }, // Posts más recientes primero
+      include: {
+        user: true,
+        comment: {
+          orderBy: { created_at: 'desc' }, // Comentarios más recientes primero
           include: {
-            user: true
-          }
-        }
-       },
+            user: true,
+          },
+        },
+      },
     });
   }
+  
 
   findOne(id: number) {
     return this.prisma.post.findUnique({
